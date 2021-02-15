@@ -14,6 +14,7 @@ def Entero_a_cadena(n,base):
       return convertirString[n]
    else:
       return Entero_a_cadena(n//base,base) + convertirString[n % base]
+#print(Entero_a_cadena(2835,16))
 
 # 3. Escriba un programa Python de suma de listas de recursividad (Datos de prueba: [1, 2, [3,4], [5,6]]).
 
@@ -25,7 +26,7 @@ def suma_lista_recursiva(data_list):
         else:
             total = total + element
     return total
-
+#print(suma_lista_recursiva([1, 2, [3,4],[5,6]]))
 # 4. Escriba un programa en Python para obtener el factorial de un entero no negativo.
 
 def factorial(n):
@@ -33,6 +34,7 @@ def factorial(n):
     return 1
   else:
     return n * (factorial(n - 1))
+#print(factorial(5))
 
 # 5. Escriba un programa en Python para resolver la secuencia de Fibonacci usando recursividad.
 
@@ -41,7 +43,7 @@ def fibonacci(n):
     return 1
   else:
     return (fibonacci(n - 1) + (fibonacci(n - 2)))
-
+#print(fibonacci(7))
 # 6. Escriba un programa en Python para obtener la suma de un número entero no negativo.
 
 def sumDigits(n):
@@ -49,6 +51,7 @@ def sumDigits(n):
     return 0
   else:
     return n % 10 + sumDigits(int(n / 10))
+#print(sumDigits(345))
 
 # 7. Escriba un programa Python para calcular la suma de los enteros positivos de n + (n-2) + (n-4) ... (hasta nx = <0).
 
@@ -57,6 +60,7 @@ def sum_series(n):
     return 0
   else:
     return n + sum_series(n - 2)
+#print(sum_series(6))
 
 # 8. Escriba un programa en Python para calcular la suma armónica de n-1.
 
@@ -65,6 +69,7 @@ def harmonic_sum(n):
     return 1
   else:
     return 1 / n + (harmonic_sum(n - 1))
+#print(harmonic_sum(7))
 
 # 9. Escriba un programa en Python para calcular la suma geométrica de n-1.
 
@@ -73,7 +78,7 @@ def geometric_sum(n):
     return 0
   else:
     return 1 / (pow(2, n)) + geometric_sum(n - 1)
-
+#print(geometric_sum(7))
 # 10. Escriba un programa en Python para calcular el valor de 'a' elevado a la potencia 'b'.
 
 def potencia(a,b):
@@ -85,7 +90,7 @@ def potencia(a,b):
         return a
     else:
         return a*potencia(a,b-1)
-
+#print(potencia(3,4))
 # 11. Escriba un programa en Python para encontrar el máximo común divisor (mcd) de dos enteros.
 def Recursive_MCD(a, b):
     baja = min(a, b)
@@ -96,3 +101,4 @@ def Recursive_MCD(a, b):
         return 1
     else:
         return Recursive_MCD(baja, alta%baja)
+#print(Recursive_MCD(12,14))

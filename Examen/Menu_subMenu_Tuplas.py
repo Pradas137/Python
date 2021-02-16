@@ -1,4 +1,4 @@
-from Examen.Operaciones_main import *
+from Examen.Ejercicios_Repaso import *
 tupla1=("sumarLista", "harmonic_sum","Sub_menu","Salir")
 tupla2=("Suma", "Multiplicacion","Salir")
 #GENERAR MENU

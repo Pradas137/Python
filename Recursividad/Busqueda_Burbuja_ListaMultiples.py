@@ -12,5 +12,5 @@ def metodo_Burbuja_recurivo(array, pasos, comparaciones):
         #print(array[pasos][comparaciones],"-", array[pasos][comparaciones + 1])
     return metodo_Burbuja_recurivo(array, pasos, comparaciones + 1)
 
-lst = [[3,1,2],[8,4,5],[9,-1,2]]
+lst = [[3,1,2],[8,4,5],[9,-1,2],[9,-1,2]]
 print(metodo_Burbuja_recurivo(lst,0,0))

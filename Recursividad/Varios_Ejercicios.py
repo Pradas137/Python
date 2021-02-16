@@ -1,5 +1,5 @@
 import random
-"""
+
 print("-----------------------------------------------")
 print("-----------------Suma Lista--------------------")
 print("-----------------------------------------------")
@@ -23,10 +23,9 @@ valores =[1,2,3]
 print(productolista(valores))
 
 print("-----------------------------------------------")
-print("---------------Producto Lista------------------")
+print("---------------Mostrar numeros asta x ------------------")
 print("-----------------------------------------------")
-"""
-"""def mostrarNumeros(num):
+def mostrarNumeros(num):
     if 1 == num:
               print(num)
               return num
@@ -35,8 +34,7 @@ print("-----------------------------------------------")
 
 numero = int(input("escrive un numero:"))
 mostrarNumeros(numero)
-"""
-"""
+
 def mostrarNumeros(num):
     if 1 == num:
               print(num)
@@ -46,8 +44,7 @@ def mostrarNumeros(num):
 
 numero = int(input("escrive un numero:"))
 mostrarNumeros(numero)
-"""
-"""
+
 print("-----------------------------------------------")
 print("--------------- SUMAR ------------------")
 print("-----------------------------------------------")
@@ -70,9 +67,13 @@ def suma(num):
         return (num-1)+suma(num-3)
 print(suma(11))
 
-"""
+print("-----------------------------------------------")
+print("--------------- Comparar LISTAS ------------------")
+print("-----------------------------------------------")
+
 """1.Dissenyeu una funció recursiva tal que, donats dos llistes de números sencers, retorni un
-booleà indicant si són iguals, és a dir, si tenen els mateixos valors a les mateixes posicions.""""""
+booleà indicant si són iguals, és a dir, si tenen els mateixos valors a les mateixes posicions.
+"""
 def compararListas (lst1, lst2):
     if lst1 and lst2:
         if len(lst1) != len(lst2):
@@ -86,13 +87,14 @@ lista1 = [1,2,3,4,5]
 lista2 = [1,2,3,4,5]
 print(compararListas(lista1,lista2))
 
+
 """
-"""2.Donat una llista de números enters ordenada decreixentment, dissenyeu un programa
+2.Donat una llista de números enters ordenada decreixentment, dissenyeu un programa
 recursiu que comprovi si el valor d’algun dels elements de la llista coincideix amb el seu
-índex.""""""
+índex."""
 
 print("-----------------------------------------------")
-print("---------------Comparar Lista------------------")
+print("---------------Comparar Lista por posicion------------------")
 print("-----------------------------------------------")
 
 def compararListasIndex(lst):
@@ -108,7 +110,7 @@ def compararListasIndex(lst):
             return False
     else:
         return True
-lista1 = [1,2,3,4,5]
+lista1 = [0,2,3,4,5]
 print(compararListasIndex(lista1))
 
 
@@ -129,7 +131,7 @@ for i in range(numero):
 print(fubonacci(numero))
 
 print("-----------------------------------------------")
-print("---------------RATA------------------")
+print("---------------RATA LAVERINTO------------------")
 print("-----------------------------------------------")
 
 def rata():
@@ -141,8 +143,11 @@ def rata():
     else:
         return 7
 print(rata())
-"""
-"""
+
+print("-----------------------------------------------")
+print("--------------- RECURSIVE PI ------------------")
+print("-----------------------------------------------")
+
 def recursividad(n):
     if n == 1:
         return 4
@@ -169,12 +174,11 @@ def invertirOrden(num):
         return int(num)
 
     return int(num[-1]) * 10 ** (len(num)-1) + invertirOrden(int(num[:-1]))
-"""
-"""
+print(invertirOrden(123))
 print("-----------------------------------------------")
 print("--------------- RUSS ------------------")
 print("-----------------------------------------------")
-
+"""
 def multiplicar(n):
     return n * 2
 
@@ -194,7 +198,7 @@ def mult(m, n, a = 0):
     return a
 
 print(mult(27, 82))
-
+"""
 def rusa (A,B):
     print(A,B)
     if A == 1:
@@ -203,8 +207,7 @@ def rusa (A,B):
         return B+rusa(A//2,B*2)
     return rusa(A//2,B*2)
 print(rusa(27,82))
-"""
-"""
+
 print("-----------------------------------------------")
 print("---------------PIRAMIDE------------------")
 print("-----------------------------------------------")
@@ -216,9 +219,9 @@ def piramide(num, indent=0):
     print(''.join(map(str, range(1, num))) +
           ''.join(map(str, range(num, 0, -1))))
     piramide(num - 1, indent + 1)
-print(piramide(7))"""
+print(piramide(7))
 
-"""
+
 print("-----------------------------------------------")
 print("---------------CURIOSIDAD------------------")
 print("-----------------------------------------------")
@@ -231,12 +234,11 @@ def curiositat(n):
     curiositat(n-1)
     print(int(uno)**2)
 curiositat(7)
-"""
-"""
+
 print("-----------------------------------------------")
 print("--------------- ADIVINAR NUMERO ------------------")
 print("-----------------------------------------------")
-
+""""
 import random
 random = random.randint(1,1000)
 print(random)
@@ -264,11 +266,11 @@ def adivina_el_número():
         adivina_el_número()
 
 adivina_el_número()
-
+"""
 #Endevinar opcion2
 
-def endevina(num = random.randint(0, 1000), min=0, max= 1000):
-    if min == 0 and max == 1000:
+def endevina(num = random.randint(0, 10), min=0, max= 10):
+    if min == 0 and max == 10:
         adivina = int(input("El programa ha generat un número entre " + str(min) + " i " + str(max) + ".\nQuin creus que és?\n    > "))
 
         if num == adivina:
@@ -295,7 +297,6 @@ def endevina(num = random.randint(0, 1000), min=0, max= 1000):
 
 endevina()
 """
-"""
 from random import randint
 def guess(num, min=0, max=1000, attempt=1):
     user_guess = int(input("Which number do you think it is? "))
@@ -316,26 +317,17 @@ def guess(num, min=0, max=1000, attempt=1):
 
 print("A random number between 0 and 1000 will be chosen.")
 guess(randint(0, 1001))
-
-"""
-
 """
 print("-----------------------------------------------")
 print("---------------CERCA BINARIA------------------")
 print("-----------------------------------------------")
-
-def cercaBinaria(lista, numBuscar, inf=0, sup=len(lista)):
-
-
-    return
-
-lista = [1,2,3,4,5]
-if cercaBinaria(5,lista,0,len(lista)-1)==True:
-    print("El numero esta en la lista")
-else:
-    print("El numero no esta en la lista")
 """
-
+def cercaBinaria(lista, numBuscar, inf=0, sup=len(lista)):
+    lista = [1,2,3,4,5]
+    if cercaBinaria(5,lista,0,len(lista)-1)==True:
+        print("El numero esta en la lista")
+    else:
+        print("El numero no esta en la lista")
 """
 def cercaBinario(lista, numBuscar):
     if len(lista) == 0:
@@ -350,7 +342,7 @@ def cercaBinario(lista, numBuscar):
             else:
                 return cercaBinario(lista[medio+1:],numBuscar)
 lista = [1,2,3,4,5]
-if cercaBinario(lista,4)==True:
+if cercaBinario(lista,1)==True:
     print("numero encontrado")
 else:
     print("Numero no encontrado")
@@ -370,12 +362,11 @@ def cercaBinaria(numBuscar,lista,inf,sup):
         return False
 
 lista=[100,200,300,400,500]
-if cercaBinaria(301,lista,0,len(lista)-1)==True:
+if cercaBinaria(300,lista,0,len(lista)-1)==True:
     print("El numero está en la lista")
 else:
     print("El numero no está en la lista")
-"""
-"""
+
 print("-----------------------------------------------")
 print("---------------CERCA BURBUJA------------------")
 print("-----------------------------------------------")
@@ -402,8 +393,6 @@ def burbuja2(l,n):
 l=[3,1,2]
 print(burbuja2(l,len(l)))
 
-"""
-"""
 print("-----------------------------------------------")
 print("---------------CERCA BURBUJA MAS DE UNA LISTA ------------------")
 print("-----------------------------------------------")
@@ -422,6 +411,5 @@ def metodo_Burbuja_recurivo(array, pasos, comparaciones):
         print(array[pasos][comparaciones],"-", array[pasos][comparaciones + 1])
     return metodo_Burbuja_recurivo(array, pasos, comparaciones + 1)
 
-lst = [[3,1,2],[8,4,5],[9,-1,2]]
+lst = [[3,1,2],[8,4,5],[9,-1,2],[9,-1,2]]
 print(metodo_Burbuja_recurivo(lst,0,0))
-"""

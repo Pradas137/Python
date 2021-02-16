@@ -1,4 +1,4 @@
-from Examen.Operaciones_main import *
+from Examen.Ejercicios_Repaso import *
 def pedirNumeroEntero():
     correcto=False
     num=0

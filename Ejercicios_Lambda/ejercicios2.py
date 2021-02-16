@@ -42,7 +42,7 @@ d) Utilitzant les següents dades:
 """
 # A)
 tuples_cotxes = [("Vermell", "4859-A", "A"),("Blau", "2901-Z", "M"),("Gris", "1892-B", "M")]
-ordenados = sorted(tuples_cotxes, key=lambda coche : coche[1],reverse=False)
+ordenados = sorted(tuples_cotxes, key=lambda coche : coche[1],reverse=True)
 print(" A) Utilitzant el mètode sort o sorted, ordeneu la llista pel camp matrícula en ordre descendent:")
 print(ordenados)
 print("-------------------------------------------------------------------------------------------------")
@@ -67,7 +67,7 @@ graus={
     "Sevilla": (299, 26),
     "Cádiz": (303, 30),
     "Lima": (311, 38)}
-ordenados = sorted(graus.items(), key=lambda Celcius: Celcius[1],reverse=True)
+ordenados = sorted(graus.items(), key=lambda Celcius: Celcius[1][1],reverse=True)
 print(" C) En el següent diccionari apareixen les ciutats i la seva temperatura en graus kelvin i "
       "Celsius, utilitzant el mètode sort o sorted, ordeneu la llista pel graus Celsius en ordre"
       "ascendent.:")
@@ -87,7 +87,18 @@ dic_compradors={
     "98765432M": {'nom': 'Carolina', 'matricula': '2901-Z', 'edat': 55},
     "23456789D": {'nom': 'Aaron', 'matricula': '1892-B', 'edat': 38},
     "33356789G": {'nom': 'Pol', 'matricula': '3392-R', 'edat': 21}}
+
 print(" D) Creeu una funció que mostri els compradors de cotxe de canvi ‘M’"
       "(“manual”)ordenats per edat en ordre creixent. S’hauran de mostrar totes"
       "les dades del comprador en un format adequat")
 print("-------------------------------------------------------------------------------------------------")
+
+def compradorManual(dic_compradors,diccionario_cotxes):
+    lista=[]
+    for mat in dic_compradors.values():
+        for j in diccionari_cotxes:
+            if mat["matricula"]==j["matricula"] and j["canvi"]=="M":
+                lista.append(mat)
+    lista=sorted(lista,key=lambda elemento: elemento["edat"],reverse=False)
+    return lista
+print(compradorManual(dic_compradors,diccionari_cotxes))

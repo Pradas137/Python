@@ -12,8 +12,8 @@ d) def impar(n):
 """
 
 # a)
-doblar = lambda num: num*2
-print(doblar(4))
+doble = lambda num: num*2
+print(doble(4))
 
 # b)
 revertir = lambda cadena: cadena[::-1]

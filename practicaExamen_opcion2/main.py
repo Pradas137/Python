@@ -261,5 +261,28 @@ def ordenar_diccionario_por_valor(diccionario, orden, clave= ""):
    print("No es un ASC ni un DESC")
 ordenar_diccionario_por_valor(diccionario, orden="ASC" , clave= "stock")
 """
+def ordenar_lista(lista, orden):
+    elemento = type(lista[0]).name
+    for i in range(len(lista)):
+        try:
+            if type(lista).name != "list":
+                raise ValueError
+            if type(lista[i]).name != elemento:
+                raise Exception
+            if orden == "asc" or orden == "des":
+                if orden == "asc":
+                    return sorted(lista, reverse=False)
+                else:
+                    return sorted(lista, reverse=True)
+            else:
+                raise Exception2
+        except ValueError:
+            return "ERROR: La lista no es de tipo 'list'."
+        except Exception:
+            return "ERROR: Los elementos no son del mismo tipo."
+        except Exception2:
+            return "Error: la variable Orden solo puede ser 'des' o 'asc'."
 
+lista = ("1", "2", "Suiza", "Adrià", "Roma")
+print(ordenar_lista(lista, orden = "des"))
 """

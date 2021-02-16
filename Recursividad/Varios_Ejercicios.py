@@ -47,8 +47,11 @@ def mostrarNumeros(num):
 numero = int(input("escrive un numero:"))
 mostrarNumeros(numero)
 """
-
 """
+print("-----------------------------------------------")
+print("--------------- SUMAR ------------------")
+print("-----------------------------------------------")
+
 def suma(num):
     if num==0:
         return num
@@ -88,6 +91,10 @@ print(compararListas(lista1,lista2))
 recursiu que comprovi si el valor d’algun dels elements de la llista coincideix amb el seu
 índex.""""""
 
+print("-----------------------------------------------")
+print("---------------Comparar Lista------------------")
+print("-----------------------------------------------")
+
 def compararListasIndex(lst):
     if len(lst)==1:
         if lst[-1]==lst.index(lst[-1]):
@@ -104,6 +111,12 @@ def compararListasIndex(lst):
 lista1 = [1,2,3,4,5]
 print(compararListasIndex(lista1))
 
+
+print("-----------------------------------------------")
+print("---------------FIBONACCI------------------")
+print("-----------------------------------------------")
+
+
 def fubonacci(num):
     if num == 0:
         return 0
@@ -114,6 +127,10 @@ numero=int(input("Escrive un numero:"))
 for i in range(numero):
     print(fubonacci(i),end=" ")
 print(fubonacci(numero))
+
+print("-----------------------------------------------")
+print("---------------RATA------------------")
+print("-----------------------------------------------")
 
 def rata():
     camino = random.randint(1,3)
@@ -134,6 +151,10 @@ def recursividad(n):
 n= int(input("escrive un numero: "))
 print(recursividad(n))
 
+print("-----------------------------------------------")
+print("--------------- INVERTIR ------------------")
+print("-----------------------------------------------")
+
 def invertir(number):
    if number == 1:
       return number
@@ -141,8 +162,19 @@ def invertir(number):
       return int(str(number%10) + str(invertir(number//10)))
 n=int(input("escrive un numero:"))
 print(invertir(n))
+
+def invertirOrden(num):
+    num = str(num)
+    if len(num) == 1:
+        return int(num)
+
+    return int(num[-1]) * 10 ** (len(num)-1) + invertirOrden(int(num[:-1]))
 """
 """
+print("-----------------------------------------------")
+print("--------------- RUSS ------------------")
+print("-----------------------------------------------")
+
 def multiplicar(n):
     return n * 2
 
@@ -172,7 +204,12 @@ def rusa (A,B):
     return rusa(A//2,B*2)
 print(rusa(27,82))
 """
-"""def piramide(num, indent=0):
+"""
+print("-----------------------------------------------")
+print("---------------PIRAMIDE------------------")
+print("-----------------------------------------------")
+
+def piramide(num, indent=0):
     if not num:
         return
     print(' ' * indent, end='')
@@ -182,6 +219,10 @@ print(rusa(27,82))
 print(piramide(7))"""
 
 """
+print("-----------------------------------------------")
+print("---------------CURIOSIDAD------------------")
+print("-----------------------------------------------")
+
 def curiositat(n):
     uno ="1"*n
     if n==1:
@@ -192,6 +233,10 @@ def curiositat(n):
 curiositat(7)
 """
 """
+print("-----------------------------------------------")
+print("--------------- ADIVINAR NUMERO ------------------")
+print("-----------------------------------------------")
+
 import random
 random = random.randint(1,1000)
 print(random)
@@ -219,6 +264,36 @@ def adivina_el_número():
         adivina_el_número()
 
 adivina_el_número()
+
+#Endevinar opcion2
+
+def endevina(num = random.randint(0, 1000), min=0, max= 1000):
+    if min == 0 and max == 1000:
+        adivina = int(input("El programa ha generat un número entre " + str(min) + " i " + str(max) + ".\nQuin creus que és?\n    > "))
+
+        if num == adivina:
+            print("CORRECTE. Has endevinat el número en el 1 intent.")
+
+        elif num < adivina:
+            print("CORRECTE. Has endevinat el número en el " + str(1 + endevina(num, min, adivina)) + " intent.")
+
+        elif num > adivina:
+            print("CORRECTE. Has endevinat el número en el " + str(1 + endevina(num, adivina, max)) + " intent.")
+
+    else: 
+        adivina = (int(input("El número es troba entre " + str(min) + " i " + str(max) + ".\nQuin creus que és?\n    > " )))
+
+        if num == adivina:
+            return 1
+
+        else:
+            if num < adivina:
+                return 1 + endevina(num, min, adivina)
+
+            elif num > adivina:
+                return 1 + endevina(num, adivina, max)
+
+endevina()
 """
 """
 from random import randint
@@ -245,6 +320,10 @@ guess(randint(0, 1001))
 """
 
 """
+print("-----------------------------------------------")
+print("---------------CERCA BINARIA------------------")
+print("-----------------------------------------------")
+
 def cercaBinaria(lista, numBuscar, inf=0, sup=len(lista)):
 
 
@@ -297,6 +376,10 @@ else:
     print("El numero no está en la lista")
 """
 """
+print("-----------------------------------------------")
+print("---------------CERCA BURBUJA------------------")
+print("-----------------------------------------------")
+
 def cercaBurvuja(lista,n):
     for i in range(len(lista)-2):
         if lista[i] > lista[i+1]:
@@ -321,6 +404,10 @@ print(burbuja2(l,len(l)))
 
 """
 """
+print("-----------------------------------------------")
+print("---------------CERCA BURBUJA MAS DE UNA LISTA ------------------")
+print("-----------------------------------------------")
+
 def metodo_Burbuja_recurivo(array, pasos, comparaciones):
   if len(array)-1 < pasos:
       #print(len(array)-1,"-", pasos)

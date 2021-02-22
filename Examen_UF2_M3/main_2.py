@@ -18,41 +18,40 @@ censImperi={
 categoria = ["soldat", "cesar", "centurio", "poble"]
 regio = ["Roma", "Hispania"]
 
-# Incloure persona en el cens.
-# Comprovar nom, categoria i la regió.
-def enterFrase(to_check, frase="nom"):
-    if to_check == "nom" or to_check == "categoria" or to_check == "regio":
+# Incloure persona en el cens y comprovar nom, categoria i la regió.
+def añadirFrase(verificar, frase="nom"):
+    if verificar == "nom" or verificar == "categoria" or verificar == "regio":
         cool = False
         while not cool:
             try:
-                if to_check == "nom" and frase != "nom":
+                if verificar == "nom" and frase != "nom":
                     if frase.isalpha():
                         return frase
                     else:
-                        print("El ", to_check, "ha de ser text.")
+                        print("El ", verificar, "ha de ser text.")
                         frase = "nom"
                         cool = False
                 elif frase != "nom":
                     # Volem evitar entrar a el else si ja tenim una frase.
                     print("")
                 else:
-                    if to_check == "nom":
+                    if verificar == "nom":
                         frase = str(input('Entra el teu nom: '))
-                    elif to_check == "categoria":
+                    elif verificar == "categoria":
                         frase = str(input('Entra la categoría: '))
                     else:
                         frase = str(input('Entra la regio: '))
                 if frase.isalpha():
-                    if to_check == "categoria" and frase in categoria:
+                    if verificar == "categoria" and frase in categoria:
                         cool = True
                         return frase
-                    elif to_check == "regio" and frase in regio:
+                    elif verificar == "regio" and frase in regio:
                         cool = True
                         return frase
-                    elif to_check == "categoria":
+                    elif verificar == "categoria":
                         print("La categoria no es correcta")
                         frase = str(input('Entra la categoría: '))
-                    elif to_check == "regio":
+                    elif verificar == "regio":
                         print("La regio no es correcta")
                         frase = str(input('Entra la regio: '))
                 else:
@@ -64,14 +63,14 @@ def enterFrase(to_check, frase="nom"):
 
 
 # Demanem un sexe al usuari, i ha de ser I, D o H.
-def enterSexe():
+def añadirSexo():
     cool = False
     while not cool:
         try:
-            sex = str(input("Introdueix el teu sexe: ")).upper()
-            if sex == "I" or sex == "H" or sex == "D":
+            sexo = str(input("Introdueix el teu sexe: ")).upper()
+            if sexo == "I" or sexo == "H" or sexo == "D":
                 cool = True
-                return sex
+                return sexo
             else:
                 print("El sexe ha de ser H (home), D (dona) o I (intersexual)")
         except ValueError:
@@ -79,7 +78,7 @@ def enterSexe():
 
 
 # Demanem una categoria a l'usuari
-def enterCategoria():
+def añadirCategoria():
     cool = False
     while not cool:
         try:
@@ -101,7 +100,7 @@ def enterCategoria():
 
 
 # Demanem la edat a l'usuari i la comprovem.
-def enterEdat():
+def añadirEdat():
     cool = False
     while not cool:
         try:
@@ -116,28 +115,28 @@ def enterEdat():
 
 
 # Retornem una força aleatoria entre 50 i 200
-def enterForca():
+def añadirForca():
     return random.randint(50, 200)
 
 
 # Comprovem la id de la persona.
-def idPersona():
+def añadiridPersona():
     cool = False
     while not cool:
         try:
             id = str(input("Introdueix la teva ID: ")).upper()
             if len(id) == 3:
-                check = 0
+                contr = 0
                 for caracter in range(0,2):
                     if not id[caracter].isalpha():
                         print("Format incorrecte. El format ha de ser AB1.")
                     else:
-                        check += 1
+                        contr += 1
                 if not id[2].isnumeric():
                     print("Format incorrecte. El format ha de ser AB1.")
                 else:
-                    check += 1
-                if check == 3:
+                    contr += 1
+                if contr == 3:
                     cool = True
                     for persona in censImperi:
                         if persona == id:
@@ -150,7 +149,25 @@ def idPersona():
         except ValueError:
             print("La id han de ser dues lletres i un numero junts")
 
+
 def imprimir(cabecera, datos, titulo=""):
+    print("{:^80}".format(titulo.upper()))
+    print("*" * 100)
+    for subtitulo in cabecera:
+        print("{:^20}".format(subtitulo), end="")
+    print("")
+    print("*" * 100)
+    for dato in datos:
+       # print(dato)
+        for elemento in dato:
+            #print(elemnto)
+            print("{:^20}".format(dato[elemento]), end="")
+        print()
+    print("*" * 100)
+cabecera = ("NOM", "REGION", "EDAT", "SEXE", "CATEGORIA")
+titulo = "DADES DEMANADES"
+
+"""def imprimir(cabecera, datos, titulo=""):
     flag_menu = False
     while not flag_menu:
         print(titulo)
@@ -168,26 +185,74 @@ def imprimir(cabecera, datos, titulo=""):
                 flag_menu = False
         except ValueError:
             print("No es un número, torna a provar.")
-
-
+"""
 # Buscar persona en el censo
-
-
 def buscarPersona():
     cool = False
     while not cool:
-        found = []
+        encontrar = []
         nom = str(input("Introdueix el nom de la persona: "))
         for persona in censImperi:
             if censImperi[persona]["nom"].startswith(nom):
-                found.append(censImperi[persona])
-        if len(found) == 0:
+                encontrar.append(censImperi[persona])
+        if len(encontrar) == 0:
             print("Aquesta persona no ha estat censada")
             return
         else:
-            imprimir(("NOM", "REGION", "EDAT", "SEXE", "CATEGORIA"), found, titulo="DADES DEMANADES")
-            print(found)
+            imprimir(("NOM", "REGION", "EDAT", "SEXE", "CATEGORIA"), encontrar, titulo="DADES DEMANADES")
+            print(encontrar)
             return found
+
+# Buscar soldados Hospania en el censo
+def soldatHispania():
+    cool = False
+    while not cool:
+        encontrar = []
+        categoria = "soldat"
+        hispania = "Hispania"
+        for region in censImperi:
+            if censImperi[region]["region"].startswith(hispania) and censImperi[region]["categoria"].startswith(categoria):
+                encontrar.append(censImperi[region])
+        if len(encontrar) == 0:
+            print("La region no existe")
+            return
+        else:
+            imprimir(("NOM", "REGION", "EDAT", "SEXE", "CATEGORIA"), encontrar, titulo="DADES DEMANADES")
+            return encontrar
+
+def buscarCategoria():
+    cool = False
+    while not cool:
+        encontrar = []
+        nomCategory = str(input("Introdueix el nom de la Categoria: "))
+        for categoria in censImperi:
+            if censImperi[categoria]["categoria"].startswith(nomCategory):
+                encontrar.append(censImperi[categoria])
+        if len(encontrar) == 0:
+            print("Aquesta persona no ha estat censada")
+            return
+        else:
+            imprimir(("NOM", "REGION", "EDAT", "SEXE", "CATEGORIA"), encontrar, titulo="DADES DEMANADES")
+            print(encontrar)
+            return encontrar
+
+def modificarCenso():
+    cool = False
+    while not cool:
+        encontrar = []
+        code = input("Escrive el codigo a modificar")
+        for codex in censImperi:
+            if censImperi[codex]["AR1"].startswith(code):
+                nom = input("escrive nuevo nombre")
+                nombre = censImperi.setdefault("nom",nom)
+                encontrar.append(censImperi[codex])
+        if len(encontrar) == 0:
+            print("el codigo no existe")
+            return
+        else:
+            imprimir(("NOM", "REGION", "EDAT", "SEXE", "CATEGORIA"), encontrar, titulo="DADES DEMANADES")
+            print(encontrar)
+            return encontrar
 
 def menu_generator(options, header,linea):
     flag_menu = False
@@ -197,17 +262,17 @@ def menu_generator(options, header,linea):
         for i in range(len(options)):
             print(i+1, ")", options[i])
         try:
-            user_option = int(input("Choose an option: "))
+            user_option = int(input("Elige una opcion: "))
             if 0 < user_option <= len(options):
                 flag_menu = True
                 return user_option
             else:
-                print("Invalid option.")
+                print("Opcion Invalida.")
                 flag_menu = False
         except ValueError:
-            print("That's no a number. Try again.")
+            print("Eso no es un número. Intentar otra vez.")
 
-datos=("Incloure persona en el cens","Buscar persona en el cens","Mostrar soldats Hispania","Visualitzar categoria del cens")
+datos=("Incloure persona en el cens","Buscar persona en el cens","Mostrar soldats Hispania","Visualitzar categoria del cens","Modificar Censo")
 titol="CENS ROMA"
 capsalera="_"
 flag_principal = False
@@ -215,17 +280,24 @@ while not flag_principal:
     opcion_menu = menu_generator(datos,titol,capsalera)
     if opcion_menu == 1:
         print("opcion1")
-        print(enterFrase("categoria", "asd"))
-        print(enterSexe())
-        enterCategoria()
-        enterEdat()
-        print(enterForca())
-        print(idPersona())
+        print(añadirFrase("categoria", "asd"))
+        print(añadirSexo())
+        añadirCategoria()
+        añadirEdat()
+        print(añadirForca())
+        print(añadiridPersona())
     elif opcion_menu == 2:
         print("opcion2")
         buscarPersona()
     elif opcion_menu == 3:
         print("opcion3")
+        soldatHispania()
     elif opcion_menu == 4:
+        print("opcion4")
+        buscarCategoria()
+    elif opcion_menu == 5:
+        print("opcion5")
+        modificarCenso()
+    elif opcion_menu == 0:
         salir = True
         break

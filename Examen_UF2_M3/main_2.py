@@ -1,4 +1,5 @@
 import random
+import itertools as IT
 censImperi={
 "AR1":{"nom":"Claudia","region":"Roma","edat":23,"sexe":"I","categoria":"centurio"},
 "AD3":{"nom":"Maximo","region":"Hispania","edat":30,"sexe":"H","categoria":"soldat"},
@@ -167,25 +168,7 @@ def imprimir(cabecera, datos, titulo=""):
 cabecera = ("NOM", "REGION", "EDAT", "SEXE", "CATEGORIA")
 titulo = "DADES DEMANADES"
 
-"""def imprimir(cabecera, datos, titulo=""):
-    flag_menu = False
-    while not flag_menu:
-        print(titulo)
-        for item in cabecera:
-            print(item, "\t"*3)
-        for i in range(len(datos)):
-            print(i + 1, ")", datos[i])
-        try:
-            user_option = int(input("Escull una opció: "))
-            if 0 < user_option <= len(datos):
-                flag_menu = True
-                return user_option
-            else:
-                print("Opció no vàlida.")
-                flag_menu = False
-        except ValueError:
-            print("No es un número, torna a provar.")
-"""
+
 # Buscar persona en el censo
 def buscarPersona():
     cool = False
@@ -200,8 +183,7 @@ def buscarPersona():
             return
         else:
             imprimir(("NOM", "REGION", "EDAT", "SEXE", "CATEGORIA"), encontrar, titulo="DADES DEMANADES")
-            print(encontrar)
-            return found
+            return encontrar
 
 # Buscar soldados Hospania en el censo
 def soldatHispania():
@@ -240,10 +222,10 @@ def modificarCenso():
     cool = False
     while not cool:
         encontrar = []
-        code = input("Escrive el codigo a modificar")
+        code = input("Escrive el codigo a modificar: ")
         for codex in censImperi:
             if censImperi[codex]["AR1"].startswith(code):
-                nom = input("escrive nuevo nombre")
+                nom = input("Escrive nuevo nombre: ")
                 nombre = censImperi.setdefault("nom",nom)
                 encontrar.append(censImperi[codex])
         if len(encontrar) == 0:
@@ -254,6 +236,13 @@ def modificarCenso():
             print(encontrar)
             return encontrar
 
+def removeCens(borrar,censImperi):
+    encontrar=[]
+    delete = []
+    key_to_be_deleted = (borrar)
+    delete.append(censImperi.pop(key_to_be_deleted))
+    imprimir(("NOM", "REGION", "EDAT", "SEXE", "CATEGORIA"), delete, titulo="DADES DEMANADES")
+    print(censImperi)
 def menu_generator(options, header,linea):
     flag_menu = False
     while not flag_menu:
@@ -272,7 +261,7 @@ def menu_generator(options, header,linea):
         except ValueError:
             print("Eso no es un número. Intentar otra vez.")
 
-datos=("Incloure persona en el cens","Buscar persona en el cens","Mostrar soldats Hispania","Visualitzar categoria del cens","Modificar Censo")
+datos=("Incloure persona en el cens","Buscar persona en el cens","Mostrar soldats Hispania","Visualitzar categoria del cens","Modificar Censo","Borrar en Censo")
 titol="CENS ROMA"
 capsalera="_"
 flag_principal = False
@@ -298,6 +287,12 @@ while not flag_principal:
     elif opcion_menu == 5:
         print("opcion5")
         modificarCenso()
+    elif opcion_menu == 6:
+        print("opcion6")
+        print("Las opciones de ID son.")
+        print("AR1,AD3,AC2,AV6,SS5,WQ6,JU8,DF5,BR1,KR9,KH7,XH4,KA2,MJ8")
+        borrar = input("ID a borrar: ")
+        removeCens(borrar,censImperi)
     elif opcion_menu == 0:
         salir = True
         break

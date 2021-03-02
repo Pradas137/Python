@@ -20,41 +20,35 @@ categoria = ["soldat", "cesar", "centurio", "poble"]
 regio = ["Roma", "Hispania"]
 
 # Incloure persona en el cens y comprovar nom, categoria i la regió.
-def añadirFrase(verificar, frase="nom"):
+def añadirFrase(verificar="nom"):
     if verificar == "nom" or verificar == "categoria" or verificar == "regio":
         cool = False
         while not cool:
             try:
-                if verificar == "nom" and frase != "nom":
-                    if frase.isalpha():
-                        return frase
+                if verificar == "nom":
+                    nom=input("Comprovar NOMBRE: ")
+                    if nom.isalpha():
+                        cool=True
+                        return nom
                     else:
-                        print("El ", verificar, "ha de ser text.")
-                        frase = "nom"
-                        cool = False
-                elif frase != "nom":
-                    # Volem evitar entrar a el else si ja tenim una frase.
-                    print("")
-                else:
-                    if verificar == "nom":
-                        frase = str(input('Entra el teu nom: '))
-                    elif verificar == "categoria":
-                        frase = str(input('Entra la categoría: '))
-                    else:
-                        frase = str(input('Entra la regio: '))
-                if frase.isalpha():
-                    if verificar == "categoria" and frase in categoria:
+                       print("El ", nom, "ha de ser text.")
+                       raise Exception
+
+                if verificar == "categoria":
+                    frase = str(input('Comprovar Categoría: '))
+                    if frase in categoria:
                         cool = True
                         return frase
-                    elif verificar == "regio" and frase in regio:
+                    else:
+                        raise Exception
+                if verificar == "region" :
+                    frase=imput("Comprovar REGION: ")
+                    if frase in regio:
                         cool = True
                         return frase
-                    elif verificar == "categoria":
-                        print("La categoria no es correcta")
-                        frase = str(input('Entra la categoría: '))
-                    elif verificar == "regio":
-                        print("La regio no es correcta")
-                        frase = str(input('Entra la regio: '))
+                    else:
+                        raise Exception
+
                 else:
                     print("El nom ha de ser text.")
             except ValueError:
@@ -62,6 +56,18 @@ def añadirFrase(verificar, frase="nom"):
     else:
         return "null"
 
+def añadirEdat():
+    cool = False
+    while not cool:
+        try:
+            edat = int(input("Introdueix la teva edat: "))
+            if 0 <= edat <= 100:
+                return edat
+            else:
+                print("La edat ha de ser entre 0 i 100")
+                cool = False
+        except ValueError:
+            print("La edat ha de ser un NUMERO ENTER entre 0 i 100")
 
 # Demanem un sexe al usuari, i ha de ser I, D o H.
 def añadirSexo():
@@ -99,20 +105,27 @@ def añadirCategoria():
         except ValueError:
             print('La categoría ha de ser de tipus text i sense números.')
 
-
-# Demanem la edat a l'usuari i la comprovem.
-def añadirEdat():
+def añadirRegion():
     cool = False
     while not cool:
         try:
-            edat = int(input("Introdueix la teva edat: "))
-            if 0 <= edat <= 100:
-                return edat
+            reg = str(input("Introdueix la region: "))
+            if reg in regio:
+                if reg == "Mallorca":
+                    for persona in censImperi:
+                        if censImperi[persona]["region"] == "Mallorca":
+                            print("No puede ser null")
+                            cool = False
+                else:
+                    cool = True
+                if cool:
+                    return reg
             else:
-                print("La edat ha de ser entre 0 i 100")
-                cool = False
+                print("La region no es vàlida")
         except ValueError:
-            print("La edat ha de ser un NUMERO ENTER entre 0 i 100")
+            print('La region ha de ser de tipus text i sense números.')
+
+# Demanem la edat a l'usuari i la comprovem.
 
 
 # Retornem una força aleatoria entre 50 i 200
@@ -121,6 +134,7 @@ def añadirForca():
 
 
 # Comprovem la id de la persona.
+"""
 def añadiridPersona():
     cool = False
     while not cool:
@@ -149,6 +163,42 @@ def añadiridPersona():
                 print("Format incorrecte. La id han de ser 2 lletres i un numero junts.")
         except ValueError:
             print("La id han de ser dues lletres i un numero junts")
+"""
+def añadiridPersona():
+    cool = False
+    while not cool:
+        try:
+            id = str(input("Introdueix la teva ID: ")).upper()
+            if len(id) == 3:
+                contr = 0
+                for caracter in range(0,2):
+                    if not id[caracter].isalpha():
+                        print("Format incorrecte. El format ha de ser AB1.")
+                    else:
+                        contr += 1
+                if not id[2].isnumeric():
+                    print("Format incorrecte. El format ha de ser AB1.")
+                else:
+                    contr += 1
+                if contr == 3:
+                    cool = True
+                    for persona in censImperi:
+                        if persona == id:
+                            print("Aquesta ID ja ha estat registrada")
+                            cool = False
+                if cool:
+                    censImperi[id]={}
+                    censImperi[id]["nom"]=añadirFrase()
+                    censImperi[id]["region"] = añadirRegion()
+                    censImperi[id]["edat"] = añadirEdat()
+                    censImperi[id]["sexe"] = añadirSexo()
+                    censImperi[id]["categoria"] = añadirFrase("categoria")
+                    censImperi[id]["poder"] = añadirForca()
+            else:
+                print("Format incorrecte. La id han de ser 2 lletres i un numero junts.")
+        except ValueError:
+            print("La id han de ser dues lletres i un numero junts")
+
 
 
 def imprimir(cabecera, datos, titulo=""):
@@ -165,7 +215,7 @@ def imprimir(cabecera, datos, titulo=""):
             print("{:^20}".format(dato[elemento]), end="")
         print()
     print("*" * 100)
-cabecera = ("NOM", "REGION", "EDAT", "SEXE", "CATEGORIA")
+cabecera = ("NOM", "REGION", "EDAT", "SEXE", "CATEGORIA","PODER")
 titulo = "DADES DEMANADES"
 
 
@@ -223,11 +273,10 @@ def modificarCenso():
     while not cool:
         encontrar = []
         code = input("Escrive el codigo a modificar: ")
-        for codex in censImperi:
-            if censImperi[codex]["AR1"].startswith(code):
-                nom = input("Escrive nuevo nombre: ")
-                nombre = censImperi.setdefault("nom",nom)
-                encontrar.append(censImperi[codex])
+        if censImperi[0] == code:
+            updates = []
+            updates.append(input('Nombre a cambiar: '))
+            updates.append(input('Edat: '))
         if len(encontrar) == 0:
             print("el codigo no existe")
             return
@@ -268,12 +317,14 @@ flag_principal = False
 while not flag_principal:
     opcion_menu = menu_generator(datos,titol,capsalera)
     if opcion_menu == 1:
-        print("opcion1")
-        print(añadirFrase("categoria", "asd"))
+        print("Validador de informacion Persona")
+        print(añadirFrase("nom"))
+        añadirRegion()
         print(añadirSexo())
         añadirCategoria()
         añadirEdat()
         print(añadirForca())
+        print("Añadir Nueva Persona")
         print(añadiridPersona())
     elif opcion_menu == 2:
         print("opcion2")
@@ -296,13 +347,3 @@ while not flag_principal:
     elif opcion_menu == 0:
         salir = True
         break
-
-def binarizar(decimal):
-    binario = ''
-    while decimal // 2 != 0:
-        binario = str(decimal % 2) + binario
-        decimal = decimal // 2
-    return str(decimal) + binario
-
-numero = int(input('Introduce el número a convertir a binario: '))
-print(binarizar(numero))

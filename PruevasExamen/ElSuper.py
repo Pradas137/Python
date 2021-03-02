@@ -64,6 +64,21 @@ def bioEco(lista):
     else:
         print('Tanto ECO como BIO son iguales ')
 
+def eliminar(lista):
+    lista = [x for x in lista if x!= (41419, 'Fideus', 'Eco', 0.75, 210)]
+    print(lista)
+
+def Modificar(lista):
+    index = -1
+    target = int(input("Escrive id: "))
+    new_value = "Gato"
+    for i, v in enumerate(lista):
+        if v[0] == target:
+            index = i
+            break
+        if index >= 0:
+            lista[index] = (lista[index][2], new_value)
+    print(lista)
 def pedirNumeroEntero():
     correcto=False
     num=0
@@ -89,6 +104,9 @@ while not salir:
     print ("-------> 1. Crear listas de productos aleatorias <--------")
     print ("-------> 2. Aumentar 1.20% el precio <--------")
     print ("-------> 3. Productos Bio y Eco <--------")
+    print ("-------> 4. Eliminar <--------")
+    print ("-------> 5. Modificar <--------")
+
     print ("0. Salir")
     print ("Elige una opcion")
     opcion = pedirNumeroEntero()
@@ -102,6 +120,12 @@ while not salir:
     elif opcion == 3:
         print("3. Productos Bio y Eco")
         print(bioEco(productos))
+    elif opcion == 4:
+        print("4. Eliminar")
+        print(eliminar(productos))
+    elif opcion == 5:
+        print("5. Modificar")
+        print(Modificar(productos))
     elif opcion == 0:
         salir = True
     else:

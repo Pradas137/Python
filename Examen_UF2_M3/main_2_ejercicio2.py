@@ -1,9 +1,8 @@
-def binarizar(decimal):
-    binario = ''
-    while decimal // 2 != 0:
-        binario = str(decimal % 2) + binario
-        decimal = decimal // 2
-    return str(decimal) + binario
+def binarizar(num):
+    if num == 0:
+        return ""
+    else:
+        return binarizar(num//2) + str(num % 2)
 
 def Hexadecimal(dec):
     digits = "0123456789ABCDEF"
@@ -49,13 +48,13 @@ while not salir:
         #print ([hex(x) for x in numbers])
     elif opcion == 2:
         print("2. Decimal a Octal")
-        numero = int(input('Introduce el número a convertir a binario: '))
+        numero = int(input('Introduce el número a convertir a octal: '))
         octal = Decimaloctal(numero)
-        print(f"El decimal {numero} es {octal} en octal")
+        print("El decimal convertido a octal: ",octal)
     elif opcion == 3:
         print("3. Decimal a Binario")
         numero = int(input('Introduce el número a convertir a binario: '))
-        binarizar(numero)
+        print(binarizar(numero))
     elif opcion == 0:
         salir = True
     else:
